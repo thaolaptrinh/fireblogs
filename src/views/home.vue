@@ -1,5 +1,5 @@
 <template>
-  <div>11111</div>
+  <QuillEditor />
 </template>
 
 <script>
