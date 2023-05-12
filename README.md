@@ -201,4 +201,4 @@ Use this space to list resources you find helpful and would like to give credit 
 [jquery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [jquery-url]: https://jquery.com
 [firebase-url]: https://firebase.google.com
-[firebase.google.com]: https://img.shields.io/badge/Firebase-FFCD33?style=for-the-badge&logo=firebase&logoColor=gray
+[firebase.google.com]: https://img.shields.io/badge/Firebase-563D7C?style=for-the-badge&logo=firebase&logoColor=FFCD33
