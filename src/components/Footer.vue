@@ -32,11 +32,13 @@
         <div class="col-2">
           <ul>
             <router-link class="link" :to="{ name: 'home' }">Home</router-link>
-            <router-link class="link" :to="{ name: 'home' }">blogs</router-link>
+            <router-link class="link" :to="{ name: 'blogs' }"
+              >blogs</router-link
+            >
             <router-link class="link" :to="{ name: 'home' }" v-if="user"
               >create post</router-link
             >
-            <router-link class="link" :to="{ name: 'home' }" v-else
+            <router-link class="link" :to="{ name: 'login' }" v-else
               >login/register</router-link
             >
           </ul>
