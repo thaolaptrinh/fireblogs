@@ -2,9 +2,10 @@
   <header>
     <nav class="container">
       <div class="branding">
-        <router-link class="header" :to="{ name: 'home' }"
-          >FireBlogs</router-link
-        >
+        <router-link class="header" :to="{ name: 'home' }">
+          <vueIcon />
+          FireBlogs
+        </router-link>
       </div>
 
       <div class="nav-links">
@@ -31,7 +32,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import menuIcon from "../assets/Icons/bars-regular.svg";
-
+import vueIcon from "../assets/vue.svg";
 const isMobile = ref(null);
 const isMobileNavVisible = ref(null);
 const windowWith = ref(null);
