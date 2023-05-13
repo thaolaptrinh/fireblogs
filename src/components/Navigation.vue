@@ -10,20 +10,28 @@
 
       <div class="nav-links">
         <ul v-if="!isMobile">
-          <router-link class="link" to="#">Home</router-link>
-          <router-link class="link" to="#">Blogs</router-link>
-          <router-link class="link" to="#">Create Post</router-link>
-          <router-link class="link" to="#">Login/Register</router-link>
+          <router-link class="link" :to="{ name: 'home' }">Home</router-link>
+          <router-link class="link" :to="{ name: 'blogs' }">Blogs</router-link>
+          <router-link class="link" :to="{ name: 'home' }"
+            >Create Post</router-link
+          >
+          <router-link class="link" :to="{ name: 'login' }"
+            >Login/Register</router-link
+          >
         </ul>
       </div>
     </nav>
     <menuIcon class="menu-icon" v-if="isMobile" @click="toggleMobileNav" />
     <transition name="mobile-nav">
       <ul class="mobile-nav" v-if="isMobileNavVisible">
-        <router-link class="link" to="#">Home</router-link>
-        <router-link class="link" to="#">Blogs</router-link>
-        <router-link class="link" to="#">Create Post</router-link>
-        <router-link class="link" to="#">Login/Register</router-link>
+        <router-link class="link" :to="{ name: 'home' }">Home</router-link>
+        <router-link class="link" :to="{ name: 'blogs' }">Blogs</router-link>
+        <router-link class="link" :to="{ name: 'home' }"
+          >Create Post</router-link
+        >
+        <router-link class="link" :to="{ name: 'login' }"
+          >Login/Register</router-link
+        >
       </ul>
     </transition>
   </header>
