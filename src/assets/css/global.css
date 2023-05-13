@@ -1,35 +1,30 @@
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
-  font: inherit;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
 }
-img,
-picture,
-svg,
-video {
-  display: block;
-  max-width: 100%;
-}
-input,
-select,
-textarea {
-  background-color: transparent;
-  outline: none;
-}
-button {
-  cursor: pointer;
-  background-color: transparent;
-  outline: none;
-  border: 0;
-}
-body {
+
+.app {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+}
+
+.link-light {
+  color: #fff;
 }
