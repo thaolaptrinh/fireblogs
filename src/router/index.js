@@ -11,7 +11,7 @@ const routes = [
       },
 
       {
-        path: "",
+        path: "blogs",
         name: "blogs",
         component: () => import("../views/blogs.vue"),
       },
@@ -23,7 +23,7 @@ const routes = [
     component: () => import("../layouts/AuthLayout.vue"),
     children: [
       {
-        path: "",
+        path: "login",
         alias: "login",
         name: "login",
         component: () => import("../views/login.vue"),

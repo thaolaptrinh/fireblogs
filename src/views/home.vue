@@ -15,6 +15,16 @@
         </div>
       </div>
     </div>
+
+    <div class="updates">
+      <div class="container">
+        <h2>never miss a post. Register for your free account today!</h2>
+        <router-link class="router-button" to="#"
+          >Register for FireBlogs
+          <Arrow class="arrow arrow-link" />
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +32,7 @@
 import { ref } from "vue";
 import BlogPost from "../components/BlogPost.vue";
 import BlogCard from "../components/BlogCard.vue";
+import Arrow from "../assets/Icons/arrow-right-light.svg";
 const welcomeScreen = ref({
   title: "Welcome!",
   blogPost:
@@ -47,6 +58,16 @@ const sampleBlogCard = ref([
   {
     blogTitle: "fsajhafsjhafs",
     blogCoverPhoto: "stock-2",
+    blogDate: "May 1, 2021",
+  },
+  {
+    blogTitle: "fsajhafsjhafs",
+    blogCoverPhoto: "stock-3",
+    blogDate: "May 1, 2021",
+  },
+  {
+    blogTitle: "fsajhafsjhafs",
+    blogCoverPhoto: "stock-4",
     blogDate: "May 1, 2021",
   },
 ]);
@@ -79,6 +100,41 @@ const sampleBlogCard = ref([
     }
     @media screen and (min-width: 1200px) {
       grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+.updates {
+  .container {
+    padding: 100px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media screen and (min-width: 800px) {
+      padding: 125px 25px;
+      flex-direction: row;
+    }
+    .router-button {
+      display: flex;
+      font-size: 14px;
+      text-decoration: none;
+
+      @media screen and (min-width: 800px) {
+        margin-left: auto;
+      }
+    }
+
+    h2 {
+      font-weight: 300;
+      max-width: 425px;
+      font-size: 32px;
+      width: 100%;
+      text-align: center;
+      text-transform: uppercase;
+      @media screen and (min-width: 800px) {
+        text-align: initial;
+        font-size: 38px;
+      }
     }
   }
 }
