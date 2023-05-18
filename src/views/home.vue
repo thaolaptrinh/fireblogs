@@ -20,6 +20,8 @@ const welcomeScreen = ref({
 const sampleBlogPost = ref([
   {
     title: "THis is post",
+    blogHTML: "the is blog HTML",
+    blogCoverPhoto: "beautiful-stories",
   },
 ]);
 </script>

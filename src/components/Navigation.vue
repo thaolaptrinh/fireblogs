@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted, watch } from "vue";
 import menuIcon from "../assets/Icons/bars-regular.svg";
 import vueIcon from "../assets/vue.svg";
 const isMobile = ref(null);
@@ -57,9 +57,13 @@ const checkScreen = () => {
   return;
 };
 
+function resize() {
+  window.addEventListener("resize", checkScreen);
+}
+
 onMounted(() => {
   checkScreen();
-  window.addEventListener("resize", checkScreen);
+  resize();
 });
 
 const toggleMobileNav = () =>
