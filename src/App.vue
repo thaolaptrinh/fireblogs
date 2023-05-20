@@ -69,4 +69,34 @@
     background-color: rgba(48, 48, 48, 0.7);
   }
 }
+
+.blog-card-wrapper {
+  position: relative;
+  padding: 80px 16px;
+  background-color: #f1f1f1;
+  @media screen and (min-width: 500px) {
+    padding: 100px 16px;
+  }
+
+  h3 {
+    font-weight: 300;
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .blog-cards {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr;
+    @media screen and (min-width: 500px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (min-width: 900px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (min-width: 1200px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
 </style>

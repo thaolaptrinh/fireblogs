@@ -29,10 +29,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import BlogPost from "../components/BlogPost.vue";
 import BlogCard from "../components/BlogCard.vue";
 import Arrow from "../assets/Icons/arrow-right-light.svg";
+import { useStore } from "vuex";
 const welcomeScreen = ref({
   title: "Welcome!",
   blogPost:
@@ -48,62 +49,12 @@ const sampleBlogPost = ref([
     blogCoverPhoto: "beautiful-stories",
   },
 ]);
+const store = useStore();
 
-const sampleBlogCard = ref([
-  {
-    blogTitle: "fsajhafsjhafs",
-    blogCoverPhoto: "stock-1",
-    blogDate: "May 1, 2021",
-  },
-  {
-    blogTitle: "fsajhafsjhafs",
-    blogCoverPhoto: "stock-2",
-    blogDate: "May 1, 2021",
-  },
-  {
-    blogTitle: "fsajhafsjhafs",
-    blogCoverPhoto: "stock-3",
-    blogDate: "May 1, 2021",
-  },
-  {
-    blogTitle: "fsajhafsjhafs",
-    blogCoverPhoto: "stock-4",
-    blogDate: "May 1, 2021",
-  },
-]);
+const sampleBlogCard = computed(() => store.state.sampleBlogCard);
 </script>
 
 <style lang="scss" scoped>
-.blog-card-wrapper {
-  position: relative;
-  padding: 80px 16px;
-  background-color: #f1f1f1;
-  @media screen and (min-width: 500px) {
-    padding: 100px 16px;
-  }
-
-  h3 {
-    font-weight: 300;
-    font-size: 28px;
-    margin-bottom: 32px;
-  }
-
-  .blog-cards {
-    display: grid;
-    gap: 32px;
-    grid-template-columns: 1fr;
-    @media screen and (min-width: 500px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    @media screen and (min-width: 900px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @media screen and (min-width: 1200px) {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-}
-
 .updates {
   .container {
     padding: 100px 25px;

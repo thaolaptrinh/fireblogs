@@ -1,6 +1,6 @@
 <template>
   <div class="blog-card">
-    <div class="icons">
+    <div v-show="editPost" class="icons">
       <div class="icon">
         <Edit class="edit" />
       </div>
@@ -20,6 +20,8 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+import { useStore } from "vuex";
 import Arrow from "../assets/Icons/arrow-right-light.svg";
 import Edit from "../assets/Icons/edit-regular.svg";
 import Delete from "../assets/Icons/trash-regular.svg";
@@ -29,6 +31,9 @@ const props = defineProps({
     require: true,
   },
 });
+
+const store = useStore();
+const editPost = computed(() => store.state.editPost);
 
 function getPhoto(name) {
   return new URL(`../assets/blog/cards/${name}.jpg`, import.meta.url).href;
