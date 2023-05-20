@@ -99,4 +99,10 @@
     }
   }
 }
+
+.error{
+  text-align: center;
+  font-size: 12px;
+  color: red;
+}
 </style>

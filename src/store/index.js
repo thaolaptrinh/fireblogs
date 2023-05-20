@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-
+import authStore from "./modules/authStore";
 const store = createStore({
   state: () => ({
     editPost: null,
@@ -33,7 +33,9 @@ const store = createStore({
     },
   },
   actions: {},
-  modules: {},
+  modules: {
+    auth: authStore,
+  },
 });
 
 export default store;
