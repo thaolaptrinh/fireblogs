@@ -22,7 +22,7 @@
         <input type="password" placeholder="Password" v-model="form.password" />
         <password-icon class="icon" />
       </div>
-      <div v-show="error" class="error">
+      <div v-show="errorMsg" class="error">
         {{ errorMsg }}
       </div>
     </div>
@@ -33,30 +33,42 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import { useStore } from "vuex";
 import EmailIcon from "../assets/Icons/envelope-regular.svg";
 import PasswordIcon from "../assets/Icons/lock-alt-solid.svg";
 import UserIcon from "../assets/Icons/user-alt-light.svg";
 import { useRouter } from "vue-router";
 
-const form = ref({
+const form = reactive({
   fullName: "",
   email: "",
   password: "",
 });
 
 const store = useStore();
+const errorMsg = ref("");
 const router = useRouter();
 
-const { error, errorMsg } = store.state.auth;
-
 const register = () => {
-  store.dispatch("auth/register", form.value);
-
-  if (!error) {
-    router.push({ name: "home" });
+  if (Object.values(form).some((value) => value == "")) {
+    errorMsg.value = "Please fill all the fields";
+    return;
   }
+
+  store
+    .dispatch("auth/register", form)
+    .then((data) => {
+      if (data.success) {
+        router.push({ name: "home" });
+      }
+    })
+    .catch((err) => {
+      console.log("🚀 ~ file: register.vue:67 ~ register ~ err:", err)
+      errorMsg.value = "Registration failed";
+    });
+
+  errorMsg.value = "";
 };
 </script>
 

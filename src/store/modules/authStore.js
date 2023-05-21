@@ -15,8 +15,6 @@ export default {
       data: null,
       token: null,
     },
-    error: false,
-    errorMsg: "",
   }),
 
   mutations: {
@@ -28,48 +26,53 @@ export default {
 
   actions: {
     async register({ state, commit }, dataForm) {
-      const { email, password, fullName } = dataForm;
+      return new Promise(async (resolve, reject) => {
+        const { email, password, fullName } = dataForm;
+        try {
+          const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+          const user = userCredential.user;
 
-      if (email == "" || password == "" || fullName == "") {
-        state.error = true;
-        state.errorMsg = "Please enter the fields";
-        return;
-      }
+          // Get the access token
+          const accessToken = await user.getIdToken();
 
-      try {
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        const user = userCredential.user;
+          // Update the user's profile with additional properties
+          await updateProfile(user, {
+            displayName: fullName,
+          });
 
-        // Get the access token
-        const accessToken = await user.getIdToken();
+          // Get the updated profile
+          const profile = {
+            displayName: user.displayName,
+            email: user.email,
+            // Add other profile properties as needed
+          };
 
-        // Update the user's profile with additional properties
-        await updateProfile(user, {
-          displayName: fullName,
-        });
+          commit("setUser", {
+            data: profile,
+            token: accessToken,
+          });
 
-        // Get the updated profile
-        const profile = {
-          displayName: user.displayName,
-          email: user.email,
-          // Add other profile properties as needed
-        };
+          const firestore = db.firestore();
+          const usersCollection = firestore.collection("users");
+          console.log(
+            "🚀 ~ file: authStore.js:61 ~ returnnewPromise ~ usersCollection:",
+            usersCollection
+          );
 
-        console.log("User:", user);
-        console.log("Access Token:", accessToken);
-        console.log("Profile:", profile);
-
-        commit("setUser", {
-          data: profile,
-          token: accessToken,
-        });
-      } catch (error) {
-        console.log(error);
-      }
+          if (accessToken) {
+            resolve({
+              success: true,
+              accessToken: accessToken,
+            });
+          }
+        } catch (error) {
+          reject(error);
+        }
+      });
     },
   },
 };
