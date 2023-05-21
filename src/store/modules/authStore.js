@@ -3,6 +3,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
 
@@ -25,6 +26,34 @@ export default {
   },
 
   actions: {
+    async login({ state, commit }, dataForm) {
+      return new Promise(async (resolve, reject) => {
+        const { email, password } = dataForm;
+        try {
+          const { user } = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+
+          commit("setUser", {
+            data: user,
+            token: user.accessToken,
+          });
+
+          const token = user?.accessToken;
+
+          if (token) {
+            resolve({
+              success: true,
+              accessToken: token,
+            });
+          }
+        } catch (error) {
+          reject(error);
+        }
+      });
+    },
     async register({ state, commit }, dataForm) {
       return new Promise(async (resolve, reject) => {
         const { email, password, fullName } = dataForm;

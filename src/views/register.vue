@@ -64,7 +64,6 @@ const register = () => {
       }
     })
     .catch((err) => {
-      console.log("🚀 ~ file: register.vue:67 ~ register ~ err:", err)
       errorMsg.value = "Registration failed";
     });
 
