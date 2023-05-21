@@ -1,12 +1,12 @@
-import db from "../../firebase/firebaseInit";
+import { firebaseApp, firestore } from "../../firebase/firebaseInit";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useRouter } from "vue-router";
+import { collection, doc, setDoc } from "firebase/firestore";
 
-const auth = getAuth(db);
+const auth = getAuth(firebaseApp);
 
 export default {
   namespaced: true,
@@ -51,17 +51,16 @@ export default {
             // Add other profile properties as needed
           };
 
+          const database = doc(firestore, "users", user.uid);
+          await setDoc(database, {
+            displayName: fullName,
+            email: email,
+          });
+
           commit("setUser", {
             data: profile,
             token: accessToken,
           });
-
-          const firestore = db.firestore();
-          const usersCollection = firestore.collection("users");
-          console.log(
-            "🚀 ~ file: authStore.js:61 ~ returnnewPromise ~ usersCollection:",
-            usersCollection
-          );
 
           if (accessToken) {
             resolve({

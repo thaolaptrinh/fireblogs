@@ -14,9 +14,6 @@ var firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 
 const timestamp = serverTimestamp();
-
-// Get Firestore instance
 const firestore = getFirestore(firebaseApp);
 
-export { timestamp, firestore };
-export default firebaseApp;
+export { timestamp, firebaseApp, firestore };
